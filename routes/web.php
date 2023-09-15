@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return view('welcome', ['data' => 'HELLO']);
 })->name('home');
 
+// Route::view('/', 'welcome')->name('home');
+
 Route::get('/test', function () {
     return view('test');
 })->name('test');
@@ -31,13 +34,15 @@ Route::get('/category/{category}', function(string $category) {
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/users', function () {
-        return "All users"; // Matches The "/admin/users" URL
-    })->name('users.index');
 
-    Route::get('/users/{id?}', function($id = null) {
-        return 'User ' . $id;
-    })->whereNumber('id')->name('users.show'); // ->where('id', '[0-9]+') the same as whereNumber('id')
+
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    // Route::get('/users/{id?}', function($id = null) {
+    //     return 'User ' . $id;
+    // })->whereNumber('id')->name('users.show'); // ->where('id', '[0-9]+') the same as whereNumber('id')
+
+    Route::get('/users/{id?}', [UserController::class, 'show'])->name('users.show');
 });
 
 // Route::get('/test2', function () {

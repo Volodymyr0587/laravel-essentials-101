@@ -18,6 +18,12 @@
         <li>
             <a href="{{ route('blog') }}" class="text-blue-500">Blog</a>
         </li>
+        <li>
+            <a href="{{ route('admin.users.index') }}" class="text-blue-500">All users</a>
+        </li>
+        <li>
+            <a href="{{ route('admin.users.show', ['id' => 1]) }}" class="text-blue-500">Single User</a>
+        </li>
     </ul>
     @yield('content')
 </body>

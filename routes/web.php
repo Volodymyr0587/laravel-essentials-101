@@ -25,13 +25,20 @@ Route::get('/blog', function () {
     return view('blog');
 })->name('blog');
 
-Route::get('/user/{id?}', function($id = null) {
-    return 'User ' . $id;
-})->where('id', '[0-9]+');
-
 Route::get('/category/{category}', function(string $category) {
     return 'Category: ' . $category;
 })->whereIn('category', ['movie', 'song', 'painting']);
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/users', function () {
+        return "All users"; // Matches The "/admin/users" URL
+    })->name('users.index');
+
+    Route::get('/users/{id?}', function($id = null) {
+        return 'User ' . $id;
+    })->whereNumber('id')->name('users.show'); // ->where('id', '[0-9]+') the same as whereNumber('id')
+});
 
 // Route::get('/test2', function () {
 //     return 'Test2';

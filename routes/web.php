@@ -42,7 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //     return 'User ' . $id;
     // })->whereNumber('id')->name('users.show'); // ->where('id', '[0-9]+') the same as whereNumber('id')
 
-    Route::get('/users/{id?}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/users/{id?}', [UserController::class, 'show'])->whereNumber('id')->name('users.show');
 });
 
 // Route::get('/test2', function () {

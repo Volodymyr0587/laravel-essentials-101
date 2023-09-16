@@ -1,4 +1,4 @@
-<div class="max-w-6xl mx-auto mt-12 bg-slate-200 rounded p-2">
-    <h2 class="text-2xl font-semibold">{{ $post->title }}</h2>
+<div class="m-2 p-2 bg-slate-100">
+    <x-post-title :title="$post->title"/>
     <p>{{ $post->body }}</p>
 </div>

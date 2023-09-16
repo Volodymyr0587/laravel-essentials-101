@@ -8,7 +8,7 @@
     <title>Laravel - Essentials 101</title>
 </head>
 <body class="m-2">
-    <ul>
+    {{-- <ul>
         <li>
             <a href="{{ route('home') }}" class="text-blue-500">Home</a>
         </li>
@@ -24,7 +24,8 @@
         <li>
             <a href="{{ route('admin.users.show', ['id' => 1]) }}" class="text-blue-500">Single User</a>
         </li>
-    </ul>
+    </ul> --}}
+
     @yield('content')
 </body>
 </html>

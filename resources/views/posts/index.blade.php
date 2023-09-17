@@ -1,7 +1,10 @@
-@extends('app')
+{{-- @extends('app')
 
-@section('content')
-    <h1 class="text-lg font-bold m-2">Posts index page</h1>
+@section('content') --}}
+<x-main-layout>
+    <x-slot:header>
+        Navigation with slot
+    </x-slot:header>
 
     <x-card class="bg-indigo-200">
         @forelse ($posts as $post)
@@ -10,4 +13,12 @@
             <p class="ml-4">No posts yet</p>
         @endforelse
     </x-card>
-@endsection
+
+    <x-slot:footer>
+        <div class="mt-12">
+            Footer
+        </div>
+    </x-slot:footer>
+</x-main-layout>
+
+{{-- @endsection --}}

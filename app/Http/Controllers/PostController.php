@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -30,7 +30,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $title = $request->input('title');
+        // Or
+        // $title = $request->get('title');
+        // Or
+        $title = $request->title;
+
+        dd($title);
+        return "Post successfully created";
     }
 
     /**

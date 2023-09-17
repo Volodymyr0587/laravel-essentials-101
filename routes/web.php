@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 
-Route::resource('/posts', PostController::class)->only('index', 'show');
+Route::resource('/posts', PostController::class);
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

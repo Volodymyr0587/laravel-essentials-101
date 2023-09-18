@@ -35,12 +35,12 @@ class PostController extends Controller
 
         $post->title = $request->title;
         $post->body = $request->body;
-
         $post->save();
 
+        // $request->session()->flash('status', 'The post created successfully');
         // return redirect('/posts');
         // return to_route('posts.index');
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index')->with('status', 'The post created successfully');
 
     }
 

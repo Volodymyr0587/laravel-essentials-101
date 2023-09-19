@@ -30,19 +30,12 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'title' => ['required', 'min:3', 'max:256'],
             'body' => 'required|min:5|max:1000',
         ]);
-        $post = new Post();
+        Post::create($validatedData);
 
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->save();
-
-        // $request->session()->flash('status', 'The post created successfully');
-        // return redirect('/posts');
-        // return to_route('posts.index');
         return redirect()->route('posts.index')->with('status', 'The post created successfully');
 
     }

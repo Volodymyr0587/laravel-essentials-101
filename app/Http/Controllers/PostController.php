@@ -57,7 +57,12 @@ class PostController extends Controller
      */
     public function update(PostStoreRequest $request, Post $post)
     {
-        $post->update($request->validated());
+        $published = 0;
+        if ($request->has('is_published')) {
+            $published = 1;
+        }
+
+        $post->update($request->validated() + ['is_published' => $published]);
 
         return redirect()->route('posts.index')->with('status', 'The post updated successfully');
     }

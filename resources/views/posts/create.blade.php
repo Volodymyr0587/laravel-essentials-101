@@ -42,7 +42,7 @@
                 @enderror
             </div>
             <div class="m-2 p-2">
-                <button type="submit" class="bg-indigo-500 m-2 p-2">Create</button>
+                <button type="submit" class="bg-indigo-500 m-2 p-2 hover:bg-indigo-700 text-white rounded">Create</button>
             </div>
         </form>
     </div>

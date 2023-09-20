@@ -47,19 +47,19 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        $post = Post::findOrFail($id);
-
         return view('posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PostStoreRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+
+        return redirect()->route('posts.index')->with('status', 'The post updated successfully');
     }
 
     /**

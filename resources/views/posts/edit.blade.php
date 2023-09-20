@@ -28,7 +28,11 @@
                 @enderror
             </div>
             <div class="m-2 p-2">
-                <button type="submit" class="bg-indigo-500 m-2 p-2">Update</button>
+                <label>Published</label>
+                <input type="checkbox" name="is_published" value="is_published" @checked(old('is_published', $post->is_published))>
+            </div>
+            <div class="m-2 p-2">
+                <button type="submit" class="bg-indigo-500 m-2 p-2 hover:bg-indigo-700 text-white rounded">Update</button>
             </div>
         </form>
     </div>

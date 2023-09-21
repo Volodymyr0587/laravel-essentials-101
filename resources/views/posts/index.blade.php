@@ -1,9 +1,11 @@
 {{-- @extends('app')
 
 @section('content') --}}
-<x-main-layout>
+<x-app-layout>
     <x-slot:header>
-        Navigation with slot
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('All Posts') }}
+        </h2>
     </x-slot:header>
 
     <x-card class="bg-indigo-200">
@@ -14,11 +16,7 @@
         @endforelse
     </x-card>
 
-    <x-slot:footer>
-        <div class="mt-12">
-            Footer
-        </div>
-    </x-slot:footer>
-</x-main-layout>
+
+</x-app-layout>
 
 {{-- @endsection --}}

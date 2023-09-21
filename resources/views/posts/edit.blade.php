@@ -1,6 +1,8 @@
-<x-main-layout>
+<x-app-layout>
     <x-slot:header>
-        Update the post
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Update the post
+        </h2>
     </x-slot:header>
 
     <div class="max-w-md mx-auto mt-12">
@@ -32,7 +34,8 @@
                 <input type="checkbox" name="is_published" value="is_published" @checked(old('is_published', $post->is_published))>
             </div>
             <div class="m-2 p-2">
-                <button type="submit" class="bg-indigo-500 m-2 p-2 hover:bg-indigo-700 text-white rounded">Update</button>
+                <button type="submit"
+                    class="bg-indigo-500 m-2 p-2 hover:bg-indigo-700 text-white rounded">Update</button>
             </div>
         </form>
     </div>
@@ -42,4 +45,4 @@
             Footer
         </div>
     </x-slot:footer>
-</x-main-layout>
+</x-app-layout>

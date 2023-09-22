@@ -34,7 +34,10 @@ class PostController extends Controller
     public function store(PostStoreRequest $request)
     {
         $validatedData = $request->validated();
-        $validatedData['image'] = $request->file('image')->store('posts');
+        if ($request->hasFile('image')) {
+            $validatedData['image'] = $request->file('image')->store('posts');
+        }
+
         // dd($validatedData);
         Post::create($validatedData);
 
@@ -84,7 +87,10 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        Storage::delete($post->image);
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
+        // Storage::delete($post->image);
         $post->delete();
         return back()->with('status', 'The post deleted successfully');
     }

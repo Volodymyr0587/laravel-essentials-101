@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostStoreRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostStoreRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\PostUpdateRequest;
 
 class PostController extends Controller
 {
@@ -33,6 +35,7 @@ class PostController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['image'] = $request->file('image')->store('posts');
+        // dd($validatedData);
         Post::create($validatedData);
 
         return redirect()->route('posts.index')->with('status', 'The post created successfully');
@@ -57,14 +60,21 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(PostStoreRequest $request, Post $post)
+    public function update(PostUpdateRequest $request, Post $post)
     {
         $published = 0;
         if ($request->has('is_published')) {
             $published = 1;
         }
+        if ($request->hasFile('image')) {
+            Storage::delete($post->image);
+            $post->image = $request->file('image')->store('posts');
+        }
 
-        $post->update($request->validated() + ['is_published' => $published]);
+        $post->update($request->validated() + [
+            'is_published' => $published,
+            'image' => $post->image,
+        ]);
 
         return redirect()->route('posts.index')->with('status', 'The post updated successfully');
     }
@@ -74,6 +84,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        Storage::delete($post->image);
         $post->delete();
         return back()->with('status', 'The post deleted successfully');
     }

@@ -8,7 +8,7 @@
         </h2>
     </x-slot:header>
 
-    <x-flash-message />
+    {{-- <x-flash-message /> --}}
     <div class="m-2 p-2 flex justify-end">
         <a href="{{ route('posts.create') }}" class="bg-green-400 hover:bg-green-600 rounded text-white px-4 py-2">New Post</a>
     </div>
@@ -25,6 +25,9 @@
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
                                 Title</th>
+                                <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
+                                Image</th>
 
                             <th scope="col" class="relative px-6 py-3">Edit</th>
                         </tr>
@@ -34,6 +37,10 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <img src="{{ asset("/storage/" . $post->image) }}"
+                                    class="w-24 h-auto">
+                                </td>
 
                                 <td class="px-6 py-4 text-right text-sm">
                                     <div class="flex space-x-2">

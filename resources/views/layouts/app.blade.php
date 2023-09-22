@@ -29,6 +29,7 @@
 
             <!-- Page Content -->
             <main class="max-w-7xl mx-auto">
+                <x-flash-message />
                 {{ $slot }}
             </main>
         </div>

@@ -38,7 +38,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $post->id }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">{{ $post->title }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <img src="{{ $post->image ? asset("/storage/" . $post->image) : url("public/cats.png") }}"
+                                    <img src="{{ $post->image ? asset("/storage/" . $post->image) : asset('images/default.png') }}"
                                     class="w-24 h-auto">
                                 </td>
 

@@ -8,6 +8,7 @@
         </h2>
     </x-slot:header>
 
+    <x-flash-message />
     <div class="m-2 p-2 flex justify-end">
         <a href="{{ route('posts.create') }}" class="bg-green-400 hover:bg-green-600 rounded text-white px-4 py-2">New Post</a>
     </div>

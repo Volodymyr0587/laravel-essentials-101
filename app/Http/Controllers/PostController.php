@@ -31,7 +31,9 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-        Post::create($request->validated());
+        $validatedData = $request->validated();
+        $validatedData['image'] = $request->file('image')->store('posts');
+        Post::create($validatedData);
 
         return redirect()->route('posts.index')->with('status', 'The post created successfully');
     }

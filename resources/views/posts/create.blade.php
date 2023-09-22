@@ -20,7 +20,7 @@
                 </ul>
             </div>
         @endif --}}
-        <form class="bg-slate-200 p-4" action="{{ route('posts.store') }}" method="post">
+        <form class="bg-slate-200 p-4" action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="m-2 p-2">
@@ -33,6 +33,18 @@
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
+
+            <div class="m-2 p-2">
+                <label>Image</label>
+                <input type="file" name="image">
+            </div>
+            {{-- ! DISPLAY Image ERRORS --}}
+            <div class="m-2 p-2">
+                @error('image')
+                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div class="m-2 p-2">
                 <label>Body</label>
                 <input type="text" name="body" value="{{ old('body') }}">
@@ -43,6 +55,7 @@
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </div>
+
             <div class="m-2 p-2">
                 <button type="submit"
                     class="bg-indigo-500 m-2 p-2 hover:bg-indigo-700 text-white rounded">Create</button>

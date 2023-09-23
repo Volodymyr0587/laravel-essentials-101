@@ -33,8 +33,9 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PostStoreRequest $request)
+    public function store(Request $request)
     {
+        dd($request->tags);
         $validatedData = $request->validated();
         if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('posts');

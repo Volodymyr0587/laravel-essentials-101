@@ -99,6 +99,8 @@ class PostController extends Controller
             Storage::delete($post->image);
         }
         // Storage::delete($post->image);
+
+        // $post->tags()->detach(); // NOT need anymore, because of cascadeOnDelete()
         $post->delete();
         return back()->with('status', 'The post deleted successfully');
     }

@@ -29,4 +29,19 @@ class TagController extends Controller
 
         return redirect()->route('tags.index')->with('status', 'The tag created successfully');
     }
+
+    public function edit(Tag $tag)
+    {
+        return view('tags.edit', compact('tag'));
+    }
+
+    public function update(Request $request, Tag $tag)
+    {
+        $request->validate([
+            'name' => 'required',
+        ]);
+        $tag->update(['name' => $request->name]);
+
+        return redirect()->route('tags.index')->with('status', 'The tag updated successfully');
+    }
 }

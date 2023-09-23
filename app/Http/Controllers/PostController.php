@@ -33,16 +33,18 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostStoreRequest $request)
     {
-        dd($request->tags);
         $validatedData = $request->validated();
         if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('posts');
         }
 
         // dd($validatedData);
-        Post::create($validatedData);
+        $post = Post::create($validatedData);
+        if ($request->has('tags')) {
+            $post->tags()->attach($request->tags);
+        }
 
         return redirect()->route('posts.index')->with('status', 'The post created successfully');
     }
@@ -60,7 +62,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        $tags = Tag::all();
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -81,6 +84,8 @@ class PostController extends Controller
             'is_published' => $published,
             'image' => $post->image,
         ]);
+
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.index')->with('status', 'The post updated successfully');
     }

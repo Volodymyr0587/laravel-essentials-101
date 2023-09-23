@@ -44,4 +44,11 @@ class TagController extends Controller
 
         return redirect()->route('tags.index')->with('status', 'The tag updated successfully');
     }
+
+    public function destroy(Tag $tag)
+    {
+        $tag->delete();
+
+        return back()->with('status', 'The tag deleted successfully');
+    }
 }

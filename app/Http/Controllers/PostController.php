@@ -76,7 +76,7 @@ class PostController extends Controller
             $published = 1;
         }
         if ($request->hasFile('image')) {
-            Storage::delete($post->image);
+            // Storage::delete($post->image);
             $post->image = $request->file('image')->store('posts');
         }
 

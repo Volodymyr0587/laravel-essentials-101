@@ -3,6 +3,8 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,10 @@ Route::get('/', function () {
 Route::resource('/posts', PostController::class)->middleware(['auth']);
 
 Route::resource('/tags', TagController::class)->middleware(['auth']);
+
+Route::get('/contact', function () {
+    Mail::to('test@email.com')->send(new TestMail());
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');

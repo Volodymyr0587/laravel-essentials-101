@@ -14,6 +14,12 @@ class PostResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'post_id' => $this->id,
+            'title' => $this->title,
+            'published' => $this->is_published ? 'Published' : 'Not published',
+            'tags' => TagResource::collection($this->tags),
+            'secret' => $this->when($this->id == 3, 'secret value'),
+        ];
     }
 }

@@ -22,9 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
 
-Route::resource('/posts', PostController::class)->middleware(['auth']);
+Route::resource('/posts', PostController::class)->middleware(['auth', 'is_admin']);
 
-Route::resource('/tags', TagController::class)->middleware(['auth']);
+Route::resource('/tags', TagController::class)->middleware(['auth', 'is_admin']);
 
 // Route::get('/contact', function () {
 //     Mail::to('test@email.com')->send(new TestMail());

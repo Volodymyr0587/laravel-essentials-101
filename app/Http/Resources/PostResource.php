@@ -18,8 +18,9 @@ class PostResource extends JsonResource
             'post_id' => $this->id,
             'title' => $this->title,
             'published' => $this->is_published ? 'Published' : 'Not published',
-            'tags' => TagResource::collection($this->tags),
+            'tags' => TagResource::collection($this->whenLoaded('tags')),
             'secret' => $this->when($this->id == 3, 'secret value'),
+            'url' => route('api.posts.show', $this->id),
         ];
     }
 }

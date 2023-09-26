@@ -1,11 +1,13 @@
 <x-app-layout>
     <div class="max-w-7xl mx-auto mt-8">
         <div class="grid grid-cols-2 gap-4">
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div
                     class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="#">
-                        <img class="rounded-t-lg" src="{{ $post->image ? asset("/storage/" . $post->image) : asset('images/default.png') }}" alt="" />
+                        <img class="rounded-t-lg"
+                            src="{{ $post->image ? asset('/storage/' . $post->image) : asset('images/default.png') }}"
+                            alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
@@ -36,7 +38,9 @@
                         </a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <h2 class="">No Posts Yet</h2>
+            @endforelse
         </div>
     </div>
 </x-app-layout>
